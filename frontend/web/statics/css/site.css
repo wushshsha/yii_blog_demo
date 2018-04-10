@@ -113,8 +113,20 @@ a.desc:after {
 .nav > li > form > button.logout:focus,
 .nav > li > form > button.logout:hover {
     text-decoration: none;
-}
+}  
 
 .nav > li > form > button.logout:focus {
     outline: none;
+}
+
+/**---------man add--------**/
+.navbar-right > li > a.avatar{
+    padding-bottom: 0;
+    padding-top: 10px;
+}
+
+.navbar-right > li> a.avatar img{
+    border: #ccc solid 1px;
+    width: 32px;
+    height: 32px;
 }

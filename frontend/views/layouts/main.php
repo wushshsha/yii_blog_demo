@@ -29,22 +29,26 @@ AppAsset::register($this);
 <div class="wrap">
     <?php
     NavBar::begin([
-        'brandLabel' => Yii::$app->name,
+        'brandLabel' => Yii::t('common',"Blog"),//Yii::$app->name,
         'brandUrl' => Yii::$app->homeUrl,
         'options' => [
             'class' => 'navbar-inverse navbar-fixed-top',
         ],
     ]);
-    $menuItems = [
-        ['label' => 'Home', 'url' => ['/site/index']],
-        ['label' => 'About', 'url' => ['/site/about']],
-        ['label' => 'Contact', 'url' => ['/site/contact']],
+    $leftItems = [
+        ['label' => Yii::t("yii","Home"), 'url' => ['/site/index']],
+        ['label' => Yii::t("common","Article"), 'url' => ['/post/index']],
+        //['label' => Yii::t("common","About"), 'url' => ['/site/about']],
+        //['label' => Yii::t('common','Contact'), 'url' => ['/site/contact']],
     ];
+
+    $rightItems = array();
     if (Yii::$app->user->isGuest) {
-        $menuItems[] = ['label' => 'Signup', 'url' => ['/site/signup']];
-        $menuItems[] = ['label' => 'Login', 'url' => ['/site/login']];
+        $rightItems[] = ['label' => Yii::t('common','Signup'), 'url' => ['/site/signup']];
+        $rightItems[] = ['label' => Yii::t('common','Login'), 'url' => ['/site/login']];
     } else {
-        $menuItems[] = '<li>'
+        /*
+        $rightItems[] = '<li>'
             . Html::beginForm(['/site/logout'], 'post')
             . Html::submitButton(
                 'Logout (' . Yii::$app->user->identity->username . ')',
@@ -52,10 +56,31 @@ AppAsset::register($this);
             )
             . Html::endForm()
             . '</li>';
+         */
+        $rightItems[] = [
+            'label' => '<img src="'.Yii::$app->params['avatar']['small'].'" alt="'.Yii::$app->user->identity->username.'">',
+            'linkOptions' => ['class' => 'avatar'],
+            'items' => [
+                [
+                    'label' => '<i class="fa fa-sign-out"></i> 退出',
+                    'url' =>['/site/logout'],
+                    'linkOptions' => ['data-method' => 'post']
+                ],
+                /*[
+                    'label' => '个人中心',
+                    'url' =>['/site/logout'],
+                ]* */
+            ]
+        ];
     }
     echo Nav::widget([
+        'options' => ['class' => 'navbar-nav navbar-left'],
+        'items' => $leftItems,
+    ]);
+    echo Nav::widget([
         'options' => ['class' => 'navbar-nav navbar-right'],
-        'items' => $menuItems,
+        'encodeLabels' => false,
+        'items' => $rightItems,
     ]);
     NavBar::end();
     ?>

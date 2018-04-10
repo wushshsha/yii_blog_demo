@@ -9,6 +9,7 @@ $params = array_merge(
 return [
     'id' => 'app-frontend',
     'basePath' => dirname(__DIR__),
+    'language' =>'zh-CN',//设置默认语言为中文
     'bootstrap' => ['log'],
     'controllerNamespace' => 'frontend\controllers',
     'components' => [
@@ -16,7 +17,7 @@ return [
             'csrfParam' => '_csrf-frontend',
         ],
         'user' => [
-            'identityClass' => 'common\models\User',
+            'identityClass' => 'common\models\UserModel',
             'enableAutoLogin' => true,
             'identityCookie' => ['name' => '_identity-frontend', 'httpOnly' => true],
         ],
@@ -44,7 +45,17 @@ return [
             'rules' => [
             ],
         ],
-        /**/
+        'i18n' =>[  //语言包配置
+            'translations' =>[
+                '*' =>[
+                    'class' =>'yii\i18n\PhpMessageSource',
+                    //'basePath' =>'/messages',
+                    'fileMap' => [
+                        'common' => 'common.php',
+                    ]
+                ]
+            ]
+        ]
     ],
     'params' => $params,
 ];
