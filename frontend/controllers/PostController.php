@@ -10,6 +10,7 @@ use frontend\models\PostForm;
 use common\models\CatModel;
 use yii\filters\AccessControl;
 use yii\filters\VerbFilter;
+use common\models\PostExtendModel;
 
 class PostController extends BaseController
 {
@@ -99,6 +100,10 @@ class PostController extends BaseController
         $model = new PostForm();
 
         $data = $model->getViewById($id);
+
+        //文章统计
+        $model = new PostExtendModel();
+        $model->upCounter(['post_id'=>$id],'browser',1);
 
         return $this->render('view',['data'=>$data]);
     }

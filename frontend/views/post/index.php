@@ -1,2 +1,10 @@
 <?php
-echo "sdfsf";
+
+use frontend\widgets\post\PostWidget;
+?>
+<div class="row">
+    <div class="col-lg-9">
+        <?=PostWidget::widget(['limit'=>1,'page'=>true])?>
+    </div>
+    <div class="col-lg-3"></div>
+</div>
