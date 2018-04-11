@@ -3,6 +3,7 @@
 namespace common\models;
 
 use Yii;
+use yii\behaviors\TimestampBehavior;
 
 /**
  * This is the model class for table "posts".
@@ -21,6 +22,8 @@ use Yii;
  */
 class PostModel extends BaseModel
 {
+    const IS_VALID = 1;//已经发布
+    const NO_VALID = 0;//没有发布
     /**
      * @inheritdoc
      */
@@ -38,7 +41,7 @@ class PostModel extends BaseModel
             [['content'], 'string'],
             [['cat_id', 'user_id', 'created_at', 'updated_at'], 'integer'],
             [['title', 'summary', 'label_img', 'user_name'], 'string', 'max' => 255],
-            [['is_valid'], 'string', 'max' => 4],
+            [['is_valid'], 'integer', 'max' => 4],
         ];
     }
 
@@ -60,5 +63,21 @@ class PostModel extends BaseModel
             'created_at' => 'Created At',
             'updated_at' => 'Updated At',
         ];
+    }
+
+    public function behaviors()
+    {
+        return [
+            [
+                'class' => TimestampBehavior::className(),
+                'createdAtAttribute' => 'created_at',
+                'updatedAtAttribute' => 'updated_at',
+            ]
+        ];
+    }
+
+    public function getRelate()
+    {
+        return $this->hasMany(RelationPostTagModel::className(), ['post_id' => 'id']);
     }
 }
