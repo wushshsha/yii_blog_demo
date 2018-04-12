@@ -11,7 +11,7 @@
  Target Server Version : 50721
  File Encoding         : utf-8
 
- Date: 04/10/2018 19:04:39 PM
+ Date: 04/12/2018 11:56:36 AM
 */
 
 SET NAMES utf8;
@@ -46,7 +46,33 @@ CREATE TABLE `cats` (
   `id` int(11) NOT NULL AUTO_INCREMENT COMMENT '自增id',
   `cat_name` varchar(255) DEFAULT NULL COMMENT '分类名称',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='分类表';
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COMMENT='分类表';
+
+-- ----------------------------
+--  Table structure for `feeds`
+-- ----------------------------
+DROP TABLE IF EXISTS `feeds`;
+CREATE TABLE `feeds` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `user_id` int(11) NOT NULL COMMENT '用户id',
+  `content` varchar(255) NOT NULL COMMENT '内容',
+  `created_at` int(11) NOT NULL COMMENT '创建时间',
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM AUTO_INCREMENT=19 DEFAULT CHARSET=utf8 COMMENT='聊天信息表';
+
+-- ----------------------------
+--  Table structure for `post_extends`
+-- ----------------------------
+DROP TABLE IF EXISTS `post_extends`;
+CREATE TABLE `post_extends` (
+  `id` int(11) NOT NULL AUTO_INCREMENT COMMENT '自增id',
+  `post_id` int(11) DEFAULT NULL COMMENT '文章id',
+  `browser` int(11) DEFAULT '0' COMMENT '浏览量',
+  `collect` int(11) DEFAULT '0' COMMENT '收藏量',
+  `praise` int(11) DEFAULT '0' COMMENT '点赞',
+  `comment` int(11) DEFAULT '0' COMMENT '评论',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=40 DEFAULT CHARSET=utf8 COMMENT='文章扩展表';
 
 -- ----------------------------
 --  Table structure for `posts`
@@ -68,7 +94,7 @@ CREATE TABLE `posts` (
   KEY `cat` (`cat_id`),
   KEY `valid` (`is_valid`),
   KEY `cat_id` (`cat_id`,`is_valid`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='文章主表';
+) ENGINE=InnoDB AUTO_INCREMENT=30 DEFAULT CHARSET=utf8 COMMENT='文章主表';
 
 -- ----------------------------
 --  Table structure for `relation_post_tags`
@@ -80,7 +106,7 @@ CREATE TABLE `relation_post_tags` (
   `tag_id` int(11) DEFAULT NULL COMMENT '标签id',
   PRIMARY KEY (`id`),
   KEY `post_id` (`post_id`,`tag_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='文章和标签关联表';
+) ENGINE=InnoDB AUTO_INCREMENT=20 DEFAULT CHARSET=utf8 COMMENT='文章和标签关联表';
 
 -- ----------------------------
 --  Table structure for `tags`
@@ -92,7 +118,7 @@ CREATE TABLE `tags` (
   `post_num` int(11) DEFAULT '0' COMMENT '关联文章数',
   PRIMARY KEY (`id`),
   UNIQUE KEY `tag_name` (`tag_name`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='标签表';
+) ENGINE=InnoDB AUTO_INCREMENT=26 DEFAULT CHARSET=utf8 COMMENT='标签表';
 
 -- ----------------------------
 --  Table structure for `user`
