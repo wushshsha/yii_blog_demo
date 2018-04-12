@@ -1,4 +1,7 @@
 <?php
+
+use frontend\widgets\hot\HotWidget;
+use yii\helpers\Url;
 $this->title = $data['title'];
 $this->params['breadcrumbs'][] = ['label'=>'文章','url'=> ['post/index']];
 $this->params['breadcrumbs'][] = ['label'=>$this->title];
@@ -22,6 +25,16 @@ $this->params['breadcrumbs'][] = ['label'=>$this->title];
         </div>
     </div>
     <div class="col-lg-3">
-        
+        <div class="panel">
+            <?php if(!\Yii::$app->user->isGuest):?>    
+                <a class="btn btn-success btn-block btn-post" href="<?=Url::to(['post/create'])?>">创建文章</a>
+                <?php if (\Yii::$app->user->identity->id == $data['user_id']):?>
+                    <a class="btn btn-info btn-block btn-post" href="<?=Url::to(['post/update', 'id' => $data['id']])?>">编辑文章</a>
+                <?php endif;?>
+            <?php endif;?>
+        </div>
+
+        <!--热门文章-->
+        <?=HotWidget::widget()?>
     </div>
 </div>

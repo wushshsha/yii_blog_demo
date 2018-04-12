@@ -1,7 +1,7 @@
 <?php
 namespace frontend\models;
 
-use common\models\BaseModel;
+use common\models\base\BaseModel;
 use common\models\TagModel;
 
 class TagForm extends BaseModel{
