@@ -20,7 +20,7 @@ class AppAsset extends AssetBundle
         'statics\js\jquery-ui.js',
         'statics\js\toggles.js',
         'statics\js\layout.js',
-        'site.js',
+        'statics\js\site.js',
     ];
     public $depends = [
         'yii\web\YiiAsset',

@@ -33,7 +33,7 @@ AppAsset::register($this);
 <header>
     <div class="headerpanel">
         <div class="logopanel">
-            <h2><a href="#">博客管理系统</a></h2>
+            <h2><a href="#">后台管理系统</a></h2>
         </div><!-- logopanel -->
         
         <div class="headerbar">
