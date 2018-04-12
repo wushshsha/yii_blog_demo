@@ -12,8 +12,8 @@ class LoginAsset extends AssetBundle
     public $basePath = '@webroot';
     public $baseUrl = '@web';
     public $css = [
-        'statics\css\font-awesome-4.4.0\css\font-awesome.min.css',
-        'statics\css\layout.css',
+        'statics/css/font-awesome-4.4.0/css/font-awesome.min.css',
+        'statics/css/layout.css',
     ];
     public $js = [
     ];
