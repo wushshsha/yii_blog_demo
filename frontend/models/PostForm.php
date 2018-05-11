@@ -39,7 +39,7 @@ class PostForm extends Model
     {
         $scenarios = [
             self::SCENARIOS_CREATE => ['title', 'content','label_img','cat_id','tags'],
-            self::SCENARIOS_CREATE => ['title', 'content','label_img','cat_id','tags'],
+            self::SCENARIOS_UPDATE => ['title', 'content','label_img','cat_id','tags'],
         ];
         return array_merge(parent::scenarios(),$scenarios);
     }
